@@ -10,6 +10,7 @@ https://events.google.com/io/punchcard?lng=en
 **THE CODE JUST DRAFT. NO USE IT ;)**
 
 **My autogenerator for step 2 and may be more.**
+
 output for example:
 
 ![demo](src/main/resources/solution.png)
