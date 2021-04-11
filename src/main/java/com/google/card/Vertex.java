@@ -44,13 +44,10 @@ class Vertex {
 
     @Override
     public String toString() {
-        return character +
-                ":" + col +
-                "=" +
-                edges
-                        .stream()
-                        .map(vertex -> vertex.character + "")
-                        .reduce((v1, v2) -> "" + v1 + v2)
-                        .orElse("");
+        return String.format("%s:%d=%s", character, col, edges.stream()
+                .map(vertex -> vertex.character + "")
+                .reduce((v1, v2) -> "" + v1 + v2)
+                .orElse("")
+        );
     }
 }

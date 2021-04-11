@@ -97,9 +97,13 @@ public class Data {
 
     static int rndNextLine(char symbol, int currentLine) {
         int index = map.get(symbol);
-        int up = currentLine > 1 && mapData[currentLine - 1].charAt(index) == 'X' ? currentLine - 1 : -1;
-        int down = currentLine < mapData.length - 1 && mapData[currentLine + 1].charAt(index) == 'X' ? currentLine + 1 : -1;
-        //if (up==-1 && down==-1) return currentLine;
+        int up = currentLine > 1 && mapData[currentLine - 1].charAt(index) == 'X'
+                ? currentLine - 1
+                : -1;
+        int down = currentLine < mapData.length - 1 && mapData[currentLine + 1].charAt(index) == 'X'
+                ? currentLine + 1
+                : -1;
+        //if (up==-1 && down==-1) return currentLine; - некорректно (just hide many problems)
         if (up == -1) return down;
         if (down == -1) return up;
         return rnd.nextInt(2) > 0 ? up : down;
