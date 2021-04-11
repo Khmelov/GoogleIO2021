@@ -7,8 +7,9 @@ I/O 2021 puzzle.
 See details here:
 https://events.google.com/io/punchcard?lng=en
 
-**My autogenerator for step 2 and may be more.**
+**THE CODE JUST DRAFT. NO USE IT ;)**
 
+**My autogenerator for step 2 and may be more.**
 output for example:
 
 ![demo](src/main/resources/solution.png)

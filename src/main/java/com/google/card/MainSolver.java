@@ -11,15 +11,8 @@ public class MainSolver {
     static final Map<Character, Vertex> map = new HashMap<>();
 
     public static void main(String[] args) {
-        String word = "C  ON    TASK                                    D";
-        if (args.length > 0) {
-            StringJoiner restorer = new StringJoiner(" ", "", "");
-            for (String arg : args) {
-                restorer.add(arg);
-            }
-            word = restorer.toString();
-        }
-        System.out.printf("%2$s\n  The string for card (you can set it in args):\n \"%s\"\n%2$s\n",
+        String word = "C  ON    TASK                                     D";
+        System.out.printf("%2$s\n  The string for card:\n \"%s\"\n%2$s\n",
                 word, "-".repeat(2 + word.length())
         );
         for (int i = 0; i < 10000000; i++) {
