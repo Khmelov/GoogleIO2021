@@ -10,51 +10,18 @@ public class MainSolver {
 
     static final Map<Character, Vertex> map = new HashMap<>();
 
-    static Map<Character, Vertex> build() {
-        if (map.size() > 0) { //уже есть, просто сбросим visited и все
-            for (Vertex vertex : map.values()) {
-                vertex.visited = false;
-                vertex.dist = -1;
-                vertex.line = -1;
-            }
-            return map;
-        }
-        String chars = mapData[0];
-        //иначе заполняем карту
-        IntStream.range(0, chars.length()).forEach(i -> {
-            Vertex vertex = Vertex.of(chars.charAt(i));
-            map.put(chars.charAt(i), vertex); //это буква и ее индекс в mapData
-        });
-        for (int col = 0; col < chars.length(); col++) { //перебор всех символов
-            Vertex current = map.get(mapData[0].charAt(col));
-            for (int col2 = 0; col2 < chars.length(); col2++) {//поиск ребер
-                //if (col2 == col) continue;
-                boolean collision = false;
-                for (int line = 1; line <= 12; line++) {
-                    if (mapData[line].charAt(col) == 'X' && mapData[line].charAt(col2) == 'X') {
-                        collision = true;
-                        break;
-                    }
-                }
-                if (collision) continue;
-                for (int line = 1; line <= 12; line++) {
-                    if (mapData[line].charAt(col) == 'X') {
-                        if ((line > 1 && mapData[line - 1].charAt(col2) == 'X')
-                                ||
-                                (line < 12 && mapData[line + 1].charAt(col2) == 'X'))
-                            current.edges.add(map.get(mapData[0].charAt(col2)));
-                    }
-                }
-            }
-        }
-        return map;
-    }
-
     public static void main(String[] args) {
-        //ring word = "C  ON    TASK                                    D";
-        //String word = "C                                                D";
         String word = "C  ON    TASK                                    D";
-        //String word = "A   NO    LUCK             B";
+        if (args.length > 0) {
+            StringJoiner restorer = new StringJoiner(" ", "", "");
+            for (String arg : args) {
+                restorer.add(arg);
+            }
+            word = restorer.toString();
+        }
+        System.out.printf("%2$s\n  The string for card (you can set it in args):\n \"%s\"\n%2$s\n",
+                word, "-".repeat(2 + word.length())
+        );
         for (int i = 0; i < 10000000; i++) {
             String s = tryFind(word);
             if (word.length() == s.length()) {
@@ -113,6 +80,48 @@ public class MainSolver {
         return out.toString();
     }
 
+    private static int max = 0;
+
+    static Map<Character, Vertex> build() {
+        if (map.size() > 0) { //уже есть, просто сбросим visited и все
+            for (Vertex vertex : map.values()) {
+                vertex.visited = false;
+                vertex.dist = -1;
+                vertex.line = -1;
+            }
+            return map;
+        }
+        String chars = mapData[0];
+        //иначе заполняем карту
+        IntStream.range(0, chars.length()).forEach(i -> {
+            Vertex vertex = Vertex.of(chars.charAt(i));
+            map.put(chars.charAt(i), vertex); //это буква и ее индекс в mapData
+        });
+        for (int col = 0; col < chars.length(); col++) { //перебор всех символов
+            Vertex current = map.get(mapData[0].charAt(col));
+            for (int col2 = 0; col2 < chars.length(); col2++) {//поиск ребер
+                //if (col2 == col) continue;
+                boolean collision = false;
+                for (int line = 1; line <= 12; line++) {
+                    if (mapData[line].charAt(col) == 'X' && mapData[line].charAt(col2) == 'X') {
+                        collision = true;
+                        break;
+                    }
+                }
+                if (collision) continue;
+                for (int line = 1; line <= 12; line++) {
+                    if (mapData[line].charAt(col) == 'X') {
+                        if ((line > 1 && mapData[line - 1].charAt(col2) == 'X')
+                                ||
+                                (line < 12 && mapData[line + 1].charAt(col2) == 'X'))
+                            current.edges.add(map.get(mapData[0].charAt(col2)));
+                    }
+                }
+            }
+        }
+        return map;
+    }
+
     private static int newLine(StringBuilder out, Queue<Vertex> q, Vertex current, Vertex next, int nextLine) {
         next.dist = current.dist + 1;
         next.line = nextLine;
@@ -120,9 +129,6 @@ public class MainSolver {
         out.append(current.character);
         return nextLine;
     }
-
-
-    static int max = 0;
 
     static int rndLine(Vertex next, int line) {
         return Data.rndNextLine(next.character, line);

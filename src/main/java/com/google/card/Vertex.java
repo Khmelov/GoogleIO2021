@@ -7,6 +7,16 @@ class Vertex {
 
     private static final String[] mapData = Data.mapData;
 
+    final Character character;
+    final int col;
+    final Set<Vertex> edges;
+    final int mask;
+
+    // это для обхода нужно
+    int dist = -1;
+    boolean visited;
+    public int line;
+
     private Vertex(Character character, int col) {
         this.character = character;
         this.col = col;
@@ -31,16 +41,6 @@ class Vertex {
         return (this.mask & lessBitesVertex.mask) == lessBitesVertex.mask;
     }
 
-
-    final Character character;
-    final int col;
-    final Set<Vertex> edges;
-    final int mask;
-
-    // это для обхода нужно
-    int dist = -1;
-    boolean visited;
-    public int line;
 
     @Override
     public String toString() {
