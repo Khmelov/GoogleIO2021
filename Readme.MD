@@ -7,7 +7,7 @@ I/O 2021 puzzle.
 See details here:
 https://events.google.com/io/punchcard?lng=en
 
-**My autogenerator for steps 2 and may be more.**
+**My autogenerator for step 2 and may be more.**
 
 output for example:
 
