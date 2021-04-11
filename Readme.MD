@@ -10,6 +10,7 @@ https://events.google.com/io/punchcard?lng=en
 **My autogenerator for steps 2 and may be more.**
 
 output for example:
+<br>
 <code>
 CU)ON%L[JTASK+-,1]/B$4E=X#I:G*9\P8R"Z.7F^W5<3@VM'D
 X......X..X..■.....X..X...X.X........X.X...X.....X
