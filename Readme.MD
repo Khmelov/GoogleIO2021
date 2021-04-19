@@ -7,7 +7,7 @@ I/O 2021 puzzle.
 See details here:
 https://events.google.com/io/punchcard?lng=en
 
-**THE CODE JUST DRAFT. DO NOT USE THIS ;)**
+**THE CODE IS JUST DRAFT. DO NOT USE THIS ;)**
 
 **My autogenerator for step 2 and may be more.**
 
